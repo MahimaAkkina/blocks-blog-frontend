@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Blocks Blog Frontend
 
-## Getting Started
+A dynamic blog frontend built using **Next.js 16 (App Router)** and **Strapi v5**.
 
-First, run the development server:
+## 🚀 Features
+
+- Dynamic blog pages using slug
+- Blocks-based content rendering
+- Rich Text rendering (paragraph, heading, list)
+- Gallery Slider block using Swiper
+- Autoplay, Navigation & Pagination controls
+- White customized arrows & dots
+- Responsive design with Tailwind CSS
+- Dynamic image handling from Strapi v5
+- Author information rendering
+- Clean modular component structure
+
+## 🛠 Tech Stack
+
+- Next.js 16
+- Strapi v5 (Headless CMS)
+- Tailwind CSS
+- Swiper.js
+- REST API
+
+## 📂 Project Structure
+
+- `app/blog/[slug]/page.jsx` – Dynamic blog page
+- `components/ContentBlock.jsx` – Rich text renderer
+- `components/GallerySlider.jsx` – Image slider block
+- `components/HeroImage.jsx` – Hero Image Block
+- `components/QuotationBlock.jsx` – Quotation block
+- `globals.css` – Custom styling & Swiper overrides
+
+## ⚙️ How to Run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Make sure Strapi backend is running on:
+http://localhost:1337
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🎯 Learning Outcomes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Implemented dynamic routing using Next.js App Router
+- Integrated Strapi v5 as a Headless CMS
+- Built block-based dynamic content rendering system
+- Customized Swiper slider UI (navigation & pagination)
+- Handled nested API population in Strapi
+- Structured reusable and scalable React components
+---
 
-## Learn More
+# Commit Message List 
 
-To learn more about Next.js, take a look at the following resources:
+- Initialized Next.js App Router project
+- Integrated Strapi v5 REST API
+- Implemented dynamic blog page using slug
+- Created reusable ContentBlock component
+- Implemented Rich Text JSON renderer
+- Added support for headings, lists, bold & italic
+- Developed Gallery Slider block using Swiper
+- Enabled autoplay, navigation and pagination
+- Customized Swiper arrows & dots styling
+- Implemented dynamic media handling from Strapi v5
+- Added Tailwind styling and responsive layout
+- Structured project with modular components
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  
