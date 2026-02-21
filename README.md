@@ -1,3 +1,7 @@
+## 📌 Overview
+
+This project demonstrates a dynamic blog system using a block-based architecture powered by Strapi v5. Content is rendered dynamically based on API response and supports modular components like gallery sliders, hero images, quotations, and rich text blocks.
+
 # Blocks Blog Frontend
 
 A dynamic blog frontend built using **Next.js 16 (App Router)** and **Strapi v5**.
@@ -37,9 +41,7 @@ A dynamic blog frontend built using **Next.js 16 (App Router)** and **Strapi v5*
 ```bash
 npm install
 npm run dev
-
-Make sure Strapi backend is running on:
-http://localhost:1337
+```
 
 ## 🎯 Learning Outcomes
 
@@ -49,7 +51,9 @@ http://localhost:1337
 - Customized Swiper slider UI (navigation & pagination)
 - Handled nested API population in Strapi
 - Structured reusable and scalable React components
----
+ 
+ ---
+
 
 # Commit Message List 
 
