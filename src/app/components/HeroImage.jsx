@@ -1,8 +1,6 @@
 export default function HeroImage({ data }) {
 
-  const imageUrl =  data.heroImage?.url
-     ? `http://localhost:1337${data.heroImage.url}`
-    : null;
+  const imageUrl =  data.heroImage?.url || null;
 
   return (
     <div className="relative w-full h-[60vh] min-h-[350px] rounded-3xl overflow-hidden mb-10 group">

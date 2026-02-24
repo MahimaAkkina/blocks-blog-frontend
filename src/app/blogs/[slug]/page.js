@@ -6,7 +6,7 @@ import GallerySlider from "@/app/components/GallerySlider";
 export default async function BlogPage({ params }) {
     const {slug} =await params; 
     const response = await fetch(
-        `http://localhost:1337/api/posts?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[author]=true&populate[blocks][populate]=*`,
+        `https://nice-crystal-9995ec9ad3.strapiapp.com/api/posts?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[author]=true&populate[blocks][populate]=*`,
     { cache: "no-store" }
     );
 
@@ -19,14 +19,13 @@ export default async function BlogPage({ params }) {
     const blog = result.data[0];
 
     // Fetch Global Single Type (Banner)
-    const bannerRes = await fetch("http://localhost:1337/api/blog-image?populate=bannerImage",
+    const bannerRes = await fetch("https://nice-crystal-9995ec9ad3.strapiapp.com/api/blog-image?populate=bannerImage",
         { cache: "no-store" }
     );
     const bannerData = await bannerRes.json();
 
     const bannerUrl =
-        bannerData?.data?.bannerImage?.url
-            ? `http://localhost:1337${bannerData.data.bannerImage.url}` : null;
+        bannerData?.data?.bannerImage?.url || null;
   
   return (
     <div>

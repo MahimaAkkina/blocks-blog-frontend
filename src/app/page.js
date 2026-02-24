@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default async function Home() {
   const response = await fetch(
-    "http://localhost:1337/api/posts?populate=*",
+    "https://nice-crystal-9995ec9ad3.strapiapp.com/api/posts?populate=*",
     { cache: "no-store" }
   );
 

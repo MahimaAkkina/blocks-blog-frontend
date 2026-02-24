@@ -27,9 +27,7 @@ export default function GallerySlider({ data }) {
         className="custom-swiper rounded-2xl overflow-hidden"
       >
         {images.map((img) => {
-          const imageUrl = img.url
-            ? `http://localhost:1337${img.url}`
-            : null;
+          const imageUrl = img.url || null;
 
           return (
             <SwiperSlide key={img.id}>
