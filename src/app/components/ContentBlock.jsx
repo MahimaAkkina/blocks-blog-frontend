@@ -1,6 +1,6 @@
 export default function ContentBlock({ data }) {
   return (
-    <div className="max-w-none mb-8 text-justify">
+    <div className="content-block max-w-none mb-8 text-justify">
       {data.content?.map((item, i) => {
 
         // Helper function to render children with styles
@@ -21,7 +21,7 @@ export default function ContentBlock({ data }) {
 
           case "paragraph":
             return (
-              <p key={i} className="mb-4 leading-relaxed">
+              <p key={i} className="mb-4">
                 {renderChildren(item.children)}
               </p>
             );
@@ -38,7 +38,7 @@ export default function ContentBlock({ data }) {
               return (
                 <ul key={i} className="list-disc pl-6 mb-4">
                   {item.children.map((li, j) => (
-                    <li key={j} className="leading-relaxed mb-1">
+                    <li key={j}>
                       {renderChildren(li.children)}
                     </li>
                   ))}
@@ -48,7 +48,7 @@ export default function ContentBlock({ data }) {
               return (
                 <ol key={i} className="list-decimal pl-6 mb-4">
                   {item.children.map((li, j) => (
-                    <li key={j} className="leading-relaxed mb-1">
+                    <li key={j}>
                       {renderChildren(li.children)}
                     </li>
                   ))}

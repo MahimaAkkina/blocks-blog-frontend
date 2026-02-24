@@ -2,6 +2,7 @@ import ContentBlock from "@/app/components/ContentBlock";
 import HeroImage from "@/app/components/HeroImage";
 import QuotationBlock from "@/app/components/QuotationBlock";
 import GallerySlider from "@/app/components/GallerySlider";
+import CardsBlock from "@/app/components/CardsBlock";
 
 export default async function BlogPage({ params }) {
     const {slug} =await params; 
@@ -9,13 +10,21 @@ export default async function BlogPage({ params }) {
         `https://nice-crystal-9995ec9ad3.strapiapp.com/api/posts?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[author]=true&populate[blocks][populate]=*`,
     { cache: "no-store" }
     );
+//    const response = await fetch(
+//   `https://nice-crystal-9995ec9ad3.strapiapp.com/api/posts?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[author]=true&populate[blocks][populate]=*&populate[blocks][on][blocks.cards-section][populate][card]=true&populate[blocks][on][blocks.cards-section][populate][card][populate][image]=true`,
+//   { cache: "no-store" }
+// );
+//     const response = await fetch(
+//   `https://nice-crystal-9995ec9ad3.strapiapp.com/api/posts?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[author]=true&populate[blocks][populate][heroImage]=*&populate[blocks][populate][imageSlider]=*&populate[blocks][populate][card][populate][image]=*`,
+//   { cache: "no-store" }
+// );
 
     const result = await response.json();
 
     if(!result.data || !result.data.length) {
         return <div>Blog not found</div>;
     }
-
+    // console.log(result.data[0].blocks);
     const blog = result.data[0];
 
     // Fetch Global Single Type (Banner)
@@ -48,7 +57,7 @@ export default async function BlogPage({ params }) {
                     {blog.title}
                 </h1>
 
-                <p className="text-lg sm:text-xl m-2 text-gray-800">
+                <p className="text-lg sm:text-xl m-2 text-gray-600">
                     {blog.description}
                 </p>
 
@@ -72,7 +81,7 @@ export default async function BlogPage({ params }) {
 
       {/* Dynamic Zone Rendering */}
       {blog.blocks?.map((block, index) => {
-
+         console.log("BLOCK TYPE:", block.__component);
         switch (block.__component) {
 
           case "blocks.hero-image":
@@ -86,6 +95,9 @@ export default async function BlogPage({ params }) {
 
           case "blocks.gallery-slider":
             return <GallerySlider key={index} data={block} />;
+          
+          case "blocks.cards-section":
+            return <CardsBlock key={index} data={block} />;
 
           default:
             return null;

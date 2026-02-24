@@ -9,6 +9,24 @@
   --swiper-theme-color: #ffffff;
 }
 
+* {
+   font-family: 'Sitka Display';
+}
+.content-block p,ul,ol{
+  color: #48484d; 
+  font-size: 16px;
+}
+
+.content-block strong,
+.content-block em{
+  color: #000000;
+}
+
+/* .content-block {
+  color: #4b5f99; 
+ 
+} */
+
 /* Reduce arrow size */
 
 
