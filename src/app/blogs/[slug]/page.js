@@ -6,21 +6,23 @@ import CardsBlock from "@/app/components/CardsBlock";
 
 export default async function BlogPage({ params }) {
     const {slug} =await params; 
-    const response = await fetch(
-        `https://nice-crystal-9995ec9ad3.strapiapp.com/api/posts?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[author]=true&populate[blocks][populate]=*`,
-    { cache: "no-store" }
-    );
-//    const response = await fetch(
-//   `https://nice-crystal-9995ec9ad3.strapiapp.com/api/posts?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[author]=true&populate[blocks][populate]=*&populate[blocks][on][blocks.cards-section][populate][card]=true&populate[blocks][on][blocks.cards-section][populate][card][populate][image]=true`,
-//   { cache: "no-store" }
-// );
-//     const response = await fetch(
-//   `https://nice-crystal-9995ec9ad3.strapiapp.com/api/posts?filters[slug][$eq]=${encodeURIComponent(slug)}&populate[author]=true&populate[blocks][populate][heroImage]=*&populate[blocks][populate][imageSlider]=*&populate[blocks][populate][card][populate][image]=*`,
-//   { cache: "no-store" }
-// );
+
+const response=await fetch(
+  `https://nice-crystal-9995ec9ad3.strapiapp.com/api/posts?
+filters[slug][$eq]=${encodeURIComponent(slug)}
+&populate[author]=true
+&populate[blocks][on][blocks.hero-image][populate]=*
+&populate[blocks][on][blocks.content][populate]=*
+&populate[blocks][on][blocks.quotation][populate]=*
+&populate[blocks][on][blocks.gallery-slider][populate]=*
+&populate[blocks][on][blocks.cards-section][populate][card][populate][0]=image`,
+
+{cache:"no-store"}
+);
+
 
     const result = await response.json();
-
+console.log(result);
     if(!result.data || !result.data.length) {
         return <div>Blog not found</div>;
     }
@@ -41,43 +43,34 @@ export default async function BlogPage({ params }) {
 
         {/* Banner Section */}
         {bannerUrl && (
-            <div
-                className="relative h-[45vh] min-h-[300px] flex items-center justify-center text-black"
-                style={{
-                    backgroundImage: `url(${bannerUrl})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-            }}
-        >
-         {/* Overlay */}
-                <div className="absolute inset-0"></div>
+          <div className="relative w-full h-[35vh] sm:h-[45vh] min-h-[250px]">
 
-                <div className="relative text-center px-4">
-                <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-                    {blog.title}
+            <img
+              src={bannerUrl}
+              alt="Banner"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center px-4">
+                <h1 className="text-3xl sm:text-5xl font-bold mb-4">
+                  {blog.title}
                 </h1>
 
-                <p className="text-lg sm:text-xl m-2 text-gray-600">
-                    {blog.description}
+                <p className="text-base sm:text-xl m-2 text-gray-600">
+                  {blog.description}
                 </p>
 
-                <div className="text-sm text-black font-bold">
-                    {blog.author?.name} {/* Only displays name if author exists.*/}
+                <div className="text-sm font-bold">
+                  {blog.author?.name}
                 </div>
+              </div>
             </div>
-        </div>
-    )}
+          </div>
+        )}
     <div className="px-4 sm:px-6 lg:px-8 py-10 max-w-4xl mx-auto">
 
-      {/* <h1 className="text-3xl sm:text-4xl text-center mb-6 font-bold">
-        {blog.title}
-      </h1>
-
-      <p className="text-base sm:text-lg text-center mb-6 text-gray-500">
-        {blog.description}
-      </p>
-
-      <hr className="mb-8" /> */}
+      
 
       {/* Dynamic Zone Rendering */}
       {blog.blocks?.map((block, index) => {
