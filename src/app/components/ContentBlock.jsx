@@ -1,8 +1,9 @@
 export default function ContentBlock({ data }) {
+
   return (
     <div className="content-block max-w-none mb-8 text-justify">
       {data.content?.map((item, i) => {
-
+        console.log(item.type);
         // Helper function to render children with styles
         const renderChildren = (children) =>
           children.map((child, j) => {
@@ -19,13 +20,26 @@ export default function ContentBlock({ data }) {
 
         switch (item.type) {
 
-          case "paragraph":
+          case "paragraph": {
+            const text = item.children?.[0]?.text?.trim();
+
+            if (text?.startsWith('"') && text?.endsWith('"')) {
+              return (
+                <quote
+                  key={i}
+                  className="border-l-4 border-gray-400 pl-4 italic text-gray-700 my-6"
+                >
+                  {renderChildren(item.children)}
+                </quote>
+              );
+            }
+
             return (
               <p key={i} className="mb-4">
                 {renderChildren(item.children)}
               </p>
             );
-
+          }
           case "heading":
             return (
               <h3 key={i} className="text-2xl font-bold mb-4 mt-6">
