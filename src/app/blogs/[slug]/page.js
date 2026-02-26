@@ -7,43 +7,48 @@ import CardsBlock from "@/app/components/CardsBlock";
 
 // Async function to render blog page based on dynamic slug
 export default async function BlogPage({ params }) {
-  const { slug } = await params; // Extracting slug from dynamic route params
-  
+
+  const { slug } = await params; // Extract slug from dynamic route params
+
   // Fetch blog post from Strapi using slug filter
   const response = await fetch(
     `https://nice-crystal-9995ec9ad3.strapiapp.com/api/posts?
-      filters[slug][$eq]=${encodeURIComponent(slug)}
-      &populate[author]=true
-      &populate[blocks][on][blocks.hero-image][populate]=*
-      &populate[blocks][on][blocks.content][populate]=*
-      &populate[blocks][on][blocks.quotation][populate]=*
-      &populate[blocks][on][blocks.gallery-slider][populate]=*
-      &populate[blocks][on][blocks.cards-section][populate][card][populate][0]=image`,
-      { cache: "no-store" } // Disable caching to always fetch latest data
+filters[slug][$eq]=${encodeURIComponent(slug)}
+&populate[author]=true
+&populate[blocks][on][blocks.hero-image][populate]=*
+&populate[blocks][on][blocks.content][populate]=*
+&populate[blocks][on][blocks.quotation][populate]=*
+&populate[blocks][on][blocks.gallery-slider][populate]=*
+&populate[blocks][on][blocks.cards-section][populate][card][populate][0]=image`,
+
+    { cache: "no-store" }
   );
 
 
-  const result = await response.json(); // Convert response to JSON format
-
+  const result = await response.json();  // Convert response to JSON format
+  
   // If no blog found for given slug, show fallback message
   if (!result.data || !result.data.length) {
     return <div>Blog not found</div>;
   }
-  const blog = result.data[0]; // Extracting first blog object from API response
+ //Extract first blog object from API response
+  const blog = result.data[0];
 
 
-  // Fetch Global Single Type (Banner image)
+  // Fetch Global Single Type (Banner Image)
   const bannerRes = await fetch("https://nice-crystal-9995ec9ad3.strapiapp.com/api/blog-image?populate=bannerImage",
-    {cache:"no-store" }
+    { cache: "no-store" }
   );
-  // Convert banner response to JSON
-  const bannerData=await bannerRes.json();
-  const bannerUrl=bannerData?.data?.bannerImage?.url || null;
+  const bannerData = await bannerRes.json();
+
+  const bannerUrl =
+    bannerData?.data?.bannerImage?.url || null;
 
   return (
     <div>
+
       {/* Banner Section */}
-      {bannerUrl && ( // Render only if banner image exists
+      {bannerUrl && (
         <div className="relative w-full h-[35vh] sm:h-[45vh] min-h-[250px]">
 
           <img
@@ -70,10 +75,13 @@ export default async function BlogPage({ params }) {
         </div>
       )}
 
+
       <div className="px-4 sm:px-6 lg:px-8 py-10 max-w-4xl mx-auto">
-        
+
         {/* Dynamic Zone Rendering */}
         {blog.blocks?.map((block, index) => {
+
+
           switch (block.__component) {
 
             case "blocks.hero-image":
@@ -94,7 +102,9 @@ export default async function BlogPage({ params }) {
             default:
               return null;
           }
+
         })}
+
       </div>
     </div>
   );
