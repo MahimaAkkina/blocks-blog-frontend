@@ -34,6 +34,7 @@ A dynamic blog frontend built using **Next.js 16 (App Router)** and **Strapi v5*
 - `components/GallerySlider.jsx` – Image slider block
 - `components/HeroImage.jsx` – Hero Image Block
 - `components/QuotationBlock.jsx` – Quotation block
+- - `components/CardsBlock.jsx` – Cards block
 - `globals.css` – Custom styling & Swiper overrides
 
 ## ⚙️ How to Run
