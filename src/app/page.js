@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default async function Home() {
   const response = await fetch(
-    "https://nice-crystal-9995ec9ad3.strapiapp.com/api/posts?populate=*",
+    "https://nice-crystal-9995ec9ad3.strapiapp.com/api/posts?populate=*&sort=publishedOn:desc",
     { cache: "no-store" }
   );
 
@@ -20,7 +20,7 @@ export default async function Home() {
         {blogs.map((blog) => (
           <div
             key={blog.id}
-            className=" rounded-xl p-5 shadow-sm hover:shadow-lg transition duration-300 bg-white"
+            className=" rounded-xl p-5 shadow-sm hover:shadow-lg transition duration-300 bg-gradient-to-r from-blue-100 via-white to-blue-200"
           >
             <Link href={`/blogs/${blog.slug}`}>
               <h2 className="text-xl text-black font-bold mb-3">
