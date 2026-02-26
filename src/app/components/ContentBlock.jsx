@@ -26,15 +26,15 @@ export default function ContentBlock({ data }) {
               </p>
             );
 
-          case "heading": 
-          return ( 
-            <h3 key={i} className="text-2xl font-bold mb-4 mt-6"> 
-                {item.children.map((child) => child.text)} 
-            </h3> 
+          case "heading":
+            return (
+              <h3 key={i} className="text-2xl font-bold mb-4 mt-6">
+                {item.children.map((child) => child.text)}
+              </h3>
             );
 
           case "list":
-            if (item.format==="unordered"){
+            if (item.format === "unordered") {
               return (
                 <ul key={i} className="list-disc pl-6 mb-4">
                   {item.children.map((li, j) => (
@@ -55,6 +55,19 @@ export default function ContentBlock({ data }) {
                 </ol>
               );
             }
+          case "code":
+            const codeText = item.children?.[0]?.text?.trim();
+
+            //Hr tag
+            if (
+              item.language === "html" &&
+              (codeText === "<hr>" ||
+                codeText === "<hr/>" ||
+                codeText === "<hr />")
+            ) {
+              return <hr key={i} className="my-8 border-gray-300" />;
+            }
+
 
           default:
             return null;

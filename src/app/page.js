@@ -31,9 +31,9 @@ export default async function Home() {
             <p className="text-gray-500 mb-4">
               {blog.description}
             </p>
-             <div className="text-sm text-black font-bold">
-            {blog.author?.name} {/* Only displays name if author exists.*/}
-          </div>
+            <div className="text-sm text-black font-bold">
+              {blog.author?.name} {/* Only displays name if author exists.*/}
+            </div>
             <div className="text-sm text-gray-400">
               {new Date(blog.publishedOn).toLocaleDateString(
                 "en-IN",

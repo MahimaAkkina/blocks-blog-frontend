@@ -1,6 +1,6 @@
 export default function HeroImage({ data }) {
 
-  const imageUrl =  data.heroImage?.url || null;
+  const imageUrl = data.heroImage?.url || null;
 
   return (
     <div className="relative w-full h-[60vh] min-h-[350px] rounded-3xl overflow-hidden mb-10 group">
@@ -15,7 +15,7 @@ export default function HeroImage({ data }) {
         />
       )}
 
-       
+
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40"></div>

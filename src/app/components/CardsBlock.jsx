@@ -1,5 +1,4 @@
 export default function CardsBlock({ data }) {
-    console.log("CardsBlock data:", data); // <-- here
   if (!data?.card?.length) return null;
 
   return (
@@ -11,7 +10,7 @@ export default function CardsBlock({ data }) {
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {data.card.map((card, index) => {
-         const imageUrl = card.image?.url ?? card.image?.data?.attributes?.url ?? null;
+          const imageUrl = card.image?.url ?? card.image?.data?.attributes?.url ?? null;
 
           return (
             <div

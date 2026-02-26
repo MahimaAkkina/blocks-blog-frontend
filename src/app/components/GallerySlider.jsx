@@ -17,7 +17,7 @@ export default function GallerySlider({ data }) {
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation={data.showArrows ?? true}
-        pagination={(data.showDots ?? true)? { clickable: true } : false}
+        pagination={(data.showDots ?? true) ? { clickable: true } : false}
         autoplay={
           data.autoPlay
             ? { delay: 3000, disableOnInteraction: false }

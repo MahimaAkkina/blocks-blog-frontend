@@ -39,12 +39,12 @@ export default function QuotationBlock({ data }) {
       {/* Body with line breaks */}
       <div className="text-gray-700 italic px-5">
         {data.body
-            .split("\n")
-            .filter((line) => line.trim() !== "")
-            .map((line, index) => (
+          .split("\n")
+          .filter((line) => line.trim() !== "")
+          .map((line, index) => (
             <p key={index}>{line}</p>
-        ))}
-        </div>
+          ))}
+      </div>
     </div>
   );
 }
