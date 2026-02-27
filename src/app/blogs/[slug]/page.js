@@ -4,6 +4,7 @@ import HeroImage from "@/app/components/HeroImage";
 import QuotationBlock from "@/app/components/QuotationBlock";
 import GallerySlider from "@/app/components/GallerySlider";
 import CardsBlock from "@/app/components/CardsBlock";
+import FeaturesBlock from "@/app/components/FeaturesBlock";
 
 // Async function to render blog page based on dynamic slug
 export default async function BlogPage({ params }) {
@@ -19,6 +20,7 @@ filters[slug][$eq]=${encodeURIComponent(slug)}
 &populate[blocks][on][blocks.content][populate]=*
 &populate[blocks][on][blocks.quotation][populate]=*
 &populate[blocks][on][blocks.gallery-slider][populate]=*
+&populate[blocks][on][blocks.feature-slices][populate]=*
 &populate[blocks][on][blocks.cards-section][populate][card][populate][0]=image`,
 
     { cache: "no-store" }
@@ -98,6 +100,9 @@ filters[slug][$eq]=${encodeURIComponent(slug)}
 
             case "blocks.cards-section":
               return <CardsBlock key={index} data={block} />;
+
+            case "blocks.feature-slices":
+              return <FeaturesBlock key={index} data={block} />;
 
             default:
               return null;
