@@ -3,7 +3,6 @@ export default function ContentBlock({ data }) {
   return (
     <div className="content-block max-w-none mb-8 text-justify">
       {data.content?.map((item, i) => {
-        console.log(item.type);
         // Helper function to render children with styles
         const renderChildren = (children) =>
           children.map((child, j) => {
